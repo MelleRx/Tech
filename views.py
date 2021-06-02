@@ -1,7 +1,7 @@
 from flask import render_template, session, redirect, request
 from datetime import datetime
 
-from init import db, app
+from start import db, app
 from forms import LoginForm, RegistrationForm, OrderForm
 from tables import User, Dish, Category, Order
 from words import correct_word

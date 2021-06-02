@@ -1,4 +1,4 @@
-from init import db
+from start import db
 
 from sqlalchemy.dialects.postgresql import JSON
 from werkzeug.security import generate_password_hash, check_password_hash
