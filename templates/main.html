@@ -38,11 +38,11 @@
             {% if item.category_id == category.id %}
         <div class="col-12 col-md-4">
           <div class="card mb-3">
-            <img src="static/images/{{ j.picture }}" width="300" height="200" class="card-img-top" alt="">
+            <img src="static/images/{{ item.picture }}" width="300" height="200" class="card-img-top" alt="">
             <div class="card-body">
               <h4 class="h5 card-title">{{ item.title }}</h4>
               <p class="card-text">{{ item.description }}</p>
-              <a href="/add/{{ j.title }}" class="btn btn-danger">В корзину</a>
+              <a href="/add/{{ item.title }}" class="btn btn-danger">В корзину</a>
             </div>
           </div>
         </div>
