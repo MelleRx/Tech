@@ -5,17 +5,14 @@ from wtforms.validators import DataRequired, Length, EqualTo
 
 class LoginForm(FlaskForm):
     mail = StringField("Электронная почта:", validators=[DataRequired()])
-
-    password = PasswordField("Пароль:", validators=[
-        DataRequired(),
-        Length(min=8, message="Пароль должен быть не менее 8 символов"),
-        EqualTo('confirm_password', message="Пароли не одинаковые")
-    ])
+    password = PasswordField("Пароль:", validators=[DataRequired()])
 
 
 class RegistrationForm(FlaskForm):
     mail = StringField("Электронная почта")
-    password = PasswordField("Пароль")
+    password = PasswordField("Пароль", validators=[
+        Length(min=8, message="Пароль должен быть не менее 8 символов")
+    ])
 
 
 class OrderForm(FlaskForm):
