@@ -18,7 +18,7 @@ def render_main():
     return render_template("main.html", categories=categories, items=items, dishes=session.get("cart", []), user=user)
 
 
-@app.route("/cart/", methods=["GET", "POST"])
+@app.route("/cart/", methods=["GET"])
 def render_cart():
     flag = 0
     form = OrderForm()
