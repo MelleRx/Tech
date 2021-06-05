@@ -31,17 +31,17 @@
     </section>
 
     <section>
-      {% for i in categories %}
-      <h3 class="my-4">{{ i.title }}</h3>
+      {% for category in categories %}
+      <h3 class="my-4">{{ category.title }}</h3>
       <div class="row mt-4">
-          {% for j in items %}
-            {% if j.category_id == i.id %}
+          {% for item in items %}
+            {% if item.category_id == category.id %}
         <div class="col-12 col-md-4">
           <div class="card mb-3">
             <img src="static/images/{{ j.picture }}" width="300" height="200" class="card-img-top" alt="">
             <div class="card-body">
-              <h4 class="h5 card-title">{{ j.title }}</h4>
-              <p class="card-text">{{ j.description }}</p>
+              <h4 class="h5 card-title">{{ item.title }}</h4>
+              <p class="card-text">{{ item.description }}</p>
               <a href="/add/{{ j.title }}" class="btn btn-danger">В корзину</a>
             </div>
           </div>
