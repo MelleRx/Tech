@@ -20,7 +20,7 @@ def render_main():
 
 @app.route("/cart/", methods=["GET"])
 def render_cart():
-    flag = 0
+    is_removed = False
     form = OrderForm()
     cart = session.get("cart", [])
     use_it = set()
@@ -33,12 +33,12 @@ def render_cart():
     if session.get("user_id"):
         user = User.query.filter(User.id == session.get("user_id")).first()
     session["word"] = correct_word(len(session.get("cart", [])))
-    return render_template("cart.html", form=form, new_cart=new_cart, flag=flag, user=user)
+    return render_template("cart.html", form=form, new_cart=new_cart, is_removed=is_removed, user=user)
 
 
 @app.route("/add/<item>/")
 def add_to_cart(item):
-    flag = 0
+    is_removed = False
     form = OrderForm()
     items = db.session.query(Dish)
     cart = session.get("cart", [])
@@ -60,12 +60,12 @@ def add_to_cart(item):
     if session.get("user_id"):
         user = User.query.filter(User.id == session.get("user_id")).first()
     session["word"] = correct_word(len(session.get("cart", [])))
-    return render_template("cart.html", form=form, flag=flag, new_cart=new_cart, user=user)
+    return render_template("cart.html", form=form, is_removed=is_removed, new_cart=new_cart, user=user)
 
 
 @app.route("/pop/<item>/")
 def pop_from_cart(item):
-    flag = 1
+    is_removed = True
     form = OrderForm()
     items = db.session.query(Dish)
     cart = session.get("cart", [])
@@ -85,7 +85,7 @@ def pop_from_cart(item):
     if session.get("user_id"):
         user = User.query.filter(User.id == session.get("user_id")).first()
     session["word"] = correct_word(len(session.get("cart", [])))
-    return render_template("cart.html", form=form, flag=flag, new_cart=new_cart, user=user)
+    return render_template("cart.html", form=form, is_removed=is_removed, new_cart=new_cart, user=user)
 
 
 @app.route("/ordered/", methods=["GET", "POST"])
