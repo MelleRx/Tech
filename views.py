@@ -124,7 +124,7 @@ def render_login():
         if not form.validate_on_submit():
             return render_template("login.html", form=form)
         user = User.query.filter(User.mail == form.mail.data).first()
-        if not user or user.password_valid(form.password.data) != form.password.data:
+        if not user or user.password_valid(form.password.data):
             form.mail.errors.append("Неверно указана почта или пароль")
         else:
             session["user_id"] = user.id
