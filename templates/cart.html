@@ -67,13 +67,13 @@
         <h4 class="mb-3 col-7 mb-5">{{ session.get("cart", [])|length }}{{ session["word"] }} в корзине</h4>
         <table class="table">
           <tbody>
-          {% for i in new_cart %}
+          {% for item in new_cart %}
             <tr>
-              <th scope="row">{{ i }}</th>
+              <th scope="row">{{ item }}</th>
               <td></td>
               <td>1</td>
-              <td>{{ i.price }}</td>
-              <td><a class="text-danger" href="/pop/{{ i }}">Удалить</a></td>
+              <td>{{ item.price }}</td>
+              <td><a class="text-danger" href="/pop/{{ item }}">Удалить</a></td>
             </tr>
            {% endfor %}
           </tbody>
