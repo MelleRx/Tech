@@ -50,12 +50,14 @@ def add_to_cart(item):
                 session["price"] = 0
             session["price"] += i.price
     cart = session.get("cart", [])
-    use_it = set()
-    new_cart = []
+    uniq_dish_in_cart = set()
+    new_cart = {}
     for item in cart:
-        if item not in use_it:
-            new_cart.append(item)
-            use_it.add(item)
+        if item not in uniq_dish_in_cart:
+            new_cart[item] = 1
+            uniq_dish_in_cart.add(item)
+        else:
+            new_cart[item] += 1
     user = None
     if session.get("user_id"):
         user = User.query.filter(User.id == session.get("user_id")).first()
