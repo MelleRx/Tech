@@ -11,11 +11,11 @@ from words import correct_word
 def render_main():
     items = db.session.query(Dish)
     categories = db.session.query(Category)
-    session["word"] = correct_word(len(session.get("cart", [])))
     user = None
     if session.get("user_id"):
         user = User.query.filter(User.id == session.get("user_id")).first()
-    return render_template("main.html", categories=categories, items=items, dishes=session.get("cart", []), user=user)
+    return render_template("main.html", categories=categories, items=items, dishes=session.get("cart", []), user=user,
+                           word=correct_word(len(session.get("cart", []))))
 
 
 @app.route("/cart/", methods=["GET"])
