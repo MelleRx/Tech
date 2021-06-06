@@ -7,7 +7,7 @@ from tables import User, Dish, Category, Order
 from words import correct_word
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def render_main():
     items = db.session.query(Dish)
     categories = db.session.query(Category)
@@ -36,7 +36,7 @@ def render_cart():
     return render_template("cart.html", form=form, new_cart=new_cart, is_removed=is_removed, user=user)
 
 
-@app.route("/add/<item>/")
+@app.route("/add/<item>/", methods=["GET"])
 def add_to_cart(item):
     is_removed = False
     form = OrderForm()
@@ -63,7 +63,7 @@ def add_to_cart(item):
     return render_template("cart.html", form=form, is_removed=is_removed, new_cart=new_cart, user=user)
 
 
-@app.route("/pop/<item>/")
+@app.route("/pop/<item>/", methods=["GET"])
 def pop_from_cart(item):
     is_removed = True
     form = OrderForm()
