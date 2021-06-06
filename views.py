@@ -112,7 +112,7 @@ def render_order():
         db.session.commit()
         return render_template("ordered.html")
     else:
-        orders = db.session.query(Order)
+        orders = db.session.query(Order).filter(Order.user_id == session["user_id"])
         return render_template("cart.html", orders=orders)
 
 
