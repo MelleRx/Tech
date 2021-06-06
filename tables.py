@@ -11,6 +11,7 @@ class User(db.Model):
     mail = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
     orders = db.relationship("Order")
+    password_hash = db.Column(db.String(128), nullable=False)
 
     @property
     def password_(self):
